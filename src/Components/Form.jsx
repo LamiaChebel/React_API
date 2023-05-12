@@ -5,7 +5,7 @@ function Form({ reducer: [state, dispatch] }) {
 
 // fonction qui va mettre à jour la state en vérifiant le type et la valeur s'il y en a une
     function handlerAlias(e) {
-        dispatch({ type: "entries", payload: e.target.value });
+        dispatch({ type: "entries", payload: e.target });
     }
 
     function handlerAge(e) {
@@ -51,3 +51,5 @@ export default Form;
 
 //Pour les boutons radios, le name de chaque bouton radios ou checkbox doit être identique et la valeur doit être indiqué en string
 //Pour la mise à jour des entrées, elle se fait via l'attribut checked qui correspond à la sélection de notre bouton et celui-ci reçoit la valeur de la state concernée pour rendre une vue dynamique à notre composant
+
+//on ajoute pas la value à l'event car cela empêche la saisie de nos valeurs dans les champs du formulaire
