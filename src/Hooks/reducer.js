@@ -1,24 +1,24 @@
-function reducer(state, action){
+import { initialState } from "../Components/User.jsx";
+
+function reducer(state, action) {
 
     console.log("state", state);
     console.log("action", action);
 
     switch (action.type) {
-        case "text":
-            console.log(state.alias);
-           
-            return { alias: state.alias};
-            case "number":
-                console.log(state.age);
-                return { age: state.age};
+        case "entries":
+            console.log(state.alias, state.age);
 
-                case "checkbox":
-                    console.log(state.isAdmin);
-                    return {isAdmin: state.isAdmin};
-        
+            return { ...state, [action.payload.name]: action.payload.value };
+        case "isAdmin":
+            console.log(state.isAdmin);
+            return { ...state, [action.payload.name]: action.payload.value ==="Yes" ? true:false};
+
+        case "delete entries":
+            return initialState;
+
         default:
-            // return {...state};
-            throw new Error("unknown action");
+            return { ...state };
     }
 
 }

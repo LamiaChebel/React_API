@@ -1,28 +1,38 @@
-import React,{useReducer} from "react";
-import { reducer} from "../Hooks/reducer.js";
+import React from "react";
 
-const initialState = { alias: "", age: null, isAdmin: false };
+function Form({ reducer: [state, dispatch] }) {
 
-
-function Form () {
-    
-    const [state, dispatch] = useReducer(reducer, initialState);
-
-    console.log(state);
-
-    function handlerAlias(e){
-        e.preventDefault();
-        dispatch({type : "text", payload : e.target.value});
+    function handlerAlias(e) {
+        dispatch({ type: "entries", payload: e.target });
     }
-    
 
-    return(
-        <form action="" method="post" onSubmit={handlerSubmit}>
+    function handlerAge(e) {
+        dispatch({ type: "entries", payload: e.target });
+    }
+
+    function handlerCheckbox(e) {
+        dispatch({ type: "isAdmin", payload: e.target });
+    }
+
+    function handlerSubmit(e) {
+        e.prventDefault();
+        dispatch({ type: "send" });
+    }
+
+    return (
+        <form action="" method="get" onSubmit={handlerSubmit}>
             <fieldset>
-                <input type="text" name="alias" id="alias" value={value} onChange={handlerAlias} placeholder="Entrer votre alias :" aria-placeholder="Votre alias"/>
-                <input type="number" name="age" id="age" value={value} placeholder="Entrer votre âge :" aria-placeholder="Votre âge"/>
-                <input type="checkbox" name="admin" id="admin" value={value} placeholder="Sélectionner si vous êtes l'admin" />
-                <input type="submit" value="Send" />
+                <input type="text" name="alias" id="alias" value={state.alias} onChange={handlerAlias} placeholder="Entrer votre alias :" aria-placeholder="Votre alias" />
+
+                <input type="number" name="age" id="age" value={state.age} onChange={handlerAge} placeholder="Entrer votre âge :" aria-placeholder="Votre âge" />
+
+                    <label htmlFor="notAdmin">Are you an Admin ?
+                    <input type="checkbox" name="Admin" id="Admin" value="Yes" onChange={handlerCheckbox} placeholder="Sélectionner si vous êtes l'admin" /> Yes
+                    <input type="checkbox" name="notAdmin" id="notAdmin" value="No" onChange={handlerCheckbox} placeholder="Sélectionner si vous êtes l'admin" /> No
+                    </label>
+
+
+                <input type="submit" value="Send values" />
             </fieldset>
         </form>
     );
