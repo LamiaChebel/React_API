@@ -32,11 +32,9 @@ function Form({ reducer: [state, dispatch] }) {
 
                 <input type="number" name="age" id="age" value={state.age} onChange={handlerAge} placeholder="Entrer votre âge :" aria-placeholder="Votre âge" />
 
-                    <label htmlFor="Admin">Are you an Admin ?
+                    <label htmlFor="isAdmin">Are you an Admin ?
                     <input type="radio" name="isAdmin" id="Admin" value="Yes" onChange={handlerCheckbox} placeholder="Sélectionner si vous êtes l'admin" checked={state.isAdmin}/> Yes
-                    </label>
                     
-                    <label htmlFor="notAdmin">
                     <input type="radio" name="isAdmin" id="notAdmin" value="No" onChange={handlerCheckbox} placeholder="Sélectionner si vous êtes l'admin" checked={!state.isAdmin}/> No
                     </label>
 
